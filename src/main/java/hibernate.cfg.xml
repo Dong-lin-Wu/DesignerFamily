@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    	
+    	<property name="hibernate.connection.datasource">java:comp/env/jdbc/Designer</property>
+    	
+    	<property name="hibernate.show_sql">true</property>
+    	<property name="hibernate.format_sql">true</property>
+    	<property name="hibernate.current_session_context_class">thread</property>
+    	
+		
+		<!-- annotation創建的Table要在cfg註冊如下 -->
+		<mapping class="tw.designerfamily.model.RaiseBean"/>
+		<mapping class="tw.designerfamily.model.RaisePlanBean"/>
+		<mapping class="tw.designerfamily.model.Member" />
+		<mapping class="tw.designerfamily.model.Status" />
+		<mapping class="tw.designerfamily.model.NewsBean"/>
+		<mapping class="tw.designerfamily.model.Order"/>
+		<mapping class="tw.designerfamily.model.ProductBean"/>
+		<mapping class="tw.designerfamily.model.ForumBean"/>
+
+    </session-factory>
+</hibernate-configuration>
