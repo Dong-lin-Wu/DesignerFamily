@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
-<html>
-<head>
-	<!-- Basic Page Info -->
-	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+    <html>
 
-	
-</head>
-<body>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>header</title>
+    </head>
+
+    <body>
         <div class="pre-loader">
             <div class="pre-loader-box">
                 <div class="loader-logo"><img src="vendors/images/deskapp-logo.svg" alt=""></div>
@@ -277,7 +276,8 @@
                             <li>
                                 <input type="hidden" name="todo" value="product">
                                 <a href="#" onclick="$('#product').submit()" class="dropdown-toggle no-arrow">
-                                    <span></span><span class="mtext">Product</span>
+                                    <span class="micon icon-copy dw dw-shop" aria-hidden="true"></span><span
+                                        class="mtext">商品</span>
                                 </a>
                             </li>
                         </form>
@@ -299,11 +299,12 @@
                                 </a>
                             </li>
                         </form>
-                        <form style="display:inline;" action="admin" method="post" id="discuss">
+                        <form style="display:inline;" action="admin" method="post" id="forum">
                             <li>
-                                <input type="hidden" name="todo" value="discuss">
-                                <a href="#" onclick="$('#discuss').submit()" class="dropdown-toggle no-arrow">
-                                    <span></span><span class="mtext">Discuss</span>
+                                <input type="hidden" name="todo" value="forum">
+                                <a href="#" onclick="$('#forum').submit()" class="dropdown-toggle no-arrow">
+                                    <span class="micon icon-copy dw dw-chat-2" aria-hidden="true"></span><span
+                                        class="mtext">討論區</span>
                                 </a>
                             </li>
                         </form>
@@ -321,18 +322,6 @@
             </div>
         </div>
         <div class="mobile-menu-overlay"></div>
+    </body>
 
-
-	<!-- js -->
-	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
-	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	<script src="vendors/scripts/dashboard.js"></script>
-</body>
-</html>
+    </html>

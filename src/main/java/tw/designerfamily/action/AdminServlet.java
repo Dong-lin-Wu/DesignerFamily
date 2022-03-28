@@ -54,11 +54,11 @@ public class AdminServlet extends HttpServlet {
 		} else if (todo.equals("order")) {
 			page = "OrderServlet"; // 之後換成order_admin.jsp
 			request.getRequestDispatcher(page).forward(request, response);
-		} else if (todo.equals("discuss")) {
-			page = "DiscussControllerServlet"; // 之後換成客服_admin.jsp
-			request.getRequestDispatcher(page).forward(request, response);
-		} else if (todo.equals("coupon")) {
+		} else if (todo.equals("news")) {
 			page = "NewsServlet"; // 之後換成coupon_admin.jsp
+			request.getRequestDispatcher(page).forward(request, response);
+		} else if (todo.equals("forum")) {
+			page = "DiscussControllerServlet"; // 之後換成客服_admin.jsp
 			request.getRequestDispatcher(page).forward(request, response);
 		} else if (todo.equals("raise")) {
 			page = "RaiseServlet"; // 之後換成raise_admin.jsp
