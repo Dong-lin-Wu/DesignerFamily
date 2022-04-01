@@ -3,14 +3,17 @@ package tw.designerfamily.model;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-public class RaiseBeanService implements IDesignerBeanService<RaiseBean> {
+@Service
+@Transactional
+public class RaiseBeanService implements IRaiseBeanService {
 	
-	private RaiseDao rDao;
-	
-	public RaiseBeanService(Session session) {
-		rDao = new RaiseDao(session);
-	}
+	@Autowired
+	private IRaiseDao rDao;
 
 	@Override
 	public void insert(RaiseBean tBean) {
@@ -39,11 +42,13 @@ public class RaiseBeanService implements IDesignerBeanService<RaiseBean> {
 	
 	//介面之外的方法
 	public List<RaiseBean> searchByKey(String key){
-		return rDao.searchByKey(key);
+//		return rDao.searchByKey(key);
+		return new RaiseDao().searchByKey(key);
 	}
 	
 	public void updateStatus(int id, String status) {
-		rDao.updateStatus(id, status);
+//		rDao.updateStatus(id, status);
+		new RaiseDao().updateStatus(id, status);
 	}
 	
 

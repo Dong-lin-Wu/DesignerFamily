@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-@WebFilter(urlPatterns = {"/*"})
+//@WebFilter(urlPatterns = {"/*"})
 public class OpenSessionViewFilter implements Filter {
 
 	@Override

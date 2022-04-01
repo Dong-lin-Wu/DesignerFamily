@@ -110,7 +110,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 							<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal${rl.getRaiseNo()}">刪除</button>
 							
 							<!-- Modal -->
-							<form style="display:inline" action="RaiseServlet" method="post">
+							<form style="display:inline" action="raisedelete.controller" method="post">
 								<input type="hidden" name="donext" value="RaiseDelete">
 								<input type="hidden" name="rID" value="${rl.getRaiseNo()}">
 								<div class="modal fade" id="exampleModal${rl.getRaiseNo()}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -154,12 +154,12 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <script src="vendors/scripts/dashboard.js"></script>
 <script>
  
-<!-- 
-	var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-		  keyboard: false
-		})
-	myModal.show()
- -->
+
+	//var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+	//	  keyboard: false
+	//	})
+	//myModal.show()
+
 </script>
 
 </body>

@@ -4,7 +4,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-@WebListener
+//@WebListener
 public class SessionFactoryListener implements ServletContextListener {
 
 	@Override

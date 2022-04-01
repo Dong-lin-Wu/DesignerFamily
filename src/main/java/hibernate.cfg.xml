@@ -4,17 +4,19 @@
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-    	
+    	<!-- 改spring
     	<property name="hibernate.connection.datasource">java:comp/env/jdbc/Designer</property>
     	
     	<property name="hibernate.show_sql">true</property>
     	<property name="hibernate.format_sql">true</property>
     	<property name="hibernate.current_session_context_class">thread</property>
-    	
+    	-->
 		
 		<!-- annotation創建的Table要在cfg註冊如下 -->
+		 <!-- 改spring
 		<mapping class="tw.designerfamily.model.RaiseBean"/>
 		<mapping class="tw.designerfamily.model.RaisePlanBean"/>
+		 -->
 		<mapping class="tw.designerfamily.model.Member" />
 		<mapping class="tw.designerfamily.model.Status" />
 		<mapping class="tw.designerfamily.model.NewsBean"/>

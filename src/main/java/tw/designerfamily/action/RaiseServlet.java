@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+import tw.designerfamily.model.IRaiseBeanService;
 import tw.designerfamily.model.Member;
 import tw.designerfamily.model.RaiseBean;
 import tw.designerfamily.model.RaiseBeanService;
@@ -28,6 +31,7 @@ import tw.designerfamily.util.HibernateUtil;
  * @Description:
  * @Date: 2022/3/17
  */
+@Controller
 @WebServlet("/RaiseServlet")
 public class RaiseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -77,16 +81,19 @@ public class RaiseServlet extends HttpServlet {
 
 		response.sendRedirect(nextPage);
 	}
+	@Autowired
+	private IRaiseBeanService rService;
+	
 	public void redirectRaise(HttpServletRequest request, HttpServletResponse response) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		RaiseBeanService rService = new RaiseBeanService(session);
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		RaiseBeanService rService = new RaiseBeanService();
 		List<RaiseBean> rlist = rService.selectAll();
 		request.getSession(true).setAttribute("raiseList", rlist);
 	}
 	
 	public void gotoRaiseAddProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Member m = (Member) request.getSession(true).getAttribute("login");
 		String pName;
 		if(m != null) {
@@ -146,22 +153,22 @@ public class RaiseServlet extends HttpServlet {
 		
 		rBean.setRaisePlanBeanSet(rpBeans);
 		
-		RaiseBeanService rService = new RaiseBeanService(session);
+		RaiseBeanService rService = new RaiseBeanService();
 		rService.insert(rBean);			
 	}
 	
 	public void gotoRaiseReviewProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		int pId = Integer.parseInt(request.getParameter("rID"));
 		String pTitle = request.getParameter("rComment");
-		RaiseBeanService rService = new RaiseBeanService(session);
+		RaiseBeanService rService = new RaiseBeanService();
 		rService.updateStatus(pId, pTitle);
 	}
 	
 	public void gotoRaiseUpdateProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		int pId = Integer.parseInt(request.getParameter("rID"));
 		Member m = (Member) request.getSession(true).getAttribute("login");
 		String pName;
@@ -186,9 +193,12 @@ public class RaiseServlet extends HttpServlet {
 		String pSDate = request.getParameter("Raise_SDate");
 		String pExpDate = request.getParameter("Raise_ExpDate");
 		String pDescribe = request.getParameter("Raise_Describe");
-		RaiseBean oBean = session.get(RaiseBean.class, pId);
+		RaiseBeanService rService = new RaiseBeanService();
+		RaiseBean oBean = rService.selectById(pId);
+//		RaiseBean oBean = session.get(RaiseBean.class, pId);
 		String pStatus = oBean.getRaiseStatus();
-		session.clear();
+		
+//		session.clear(); 沒有clear應該會出問題!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 		RaiseBean rBean = new RaiseBean(pId, pName, pTitle, pBreif, pCategory, pPicName, pPicBase64, pTarget, pSDate, pExpDate, pDescribe, pStatus);
 		
@@ -230,24 +240,24 @@ public class RaiseServlet extends HttpServlet {
 		
 		rBean.setRaisePlanBeanSet(rpBeans);
 		
-		RaiseBeanService rService = new RaiseBeanService(session);
+//		RaiseBeanService rService = new RaiseBeanService(session);
 		rService.update(rBean);		
 	}
 	
 	public void gotoRaiseSearchProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		String key = request.getParameter("Raise_Search");
-		RaiseBeanService rService = new RaiseBeanService(session);
+		RaiseBeanService rService = new RaiseBeanService();
 	    List<RaiseBean> rlist = rService.searchByKey(key);
 	    request.getSession(true).setAttribute("raiseList", rlist);								
 	}
 	
 	public void gotoRaiseDeleteProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		String id = request.getParameter("rID");
-		RaiseBeanService rService = new RaiseBeanService(session);
+		RaiseBeanService rService = new RaiseBeanService();
 	    rService.deleteById(Integer.parseInt(id));
 										
 	}
