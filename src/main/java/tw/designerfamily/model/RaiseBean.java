@@ -15,8 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.stereotype.Component;
 
 @Entity @Table(name = "raise") @DynamicInsert
+@Component
 public class RaiseBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
