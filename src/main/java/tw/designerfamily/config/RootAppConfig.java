@@ -46,7 +46,7 @@ public class RootAppConfig {
 		props.put("hibernate.dialect",org.hibernate.dialect.SQLServerDialect.class);
 		props.put("hibernate.show_sql", Boolean.TRUE);
 		props.put("hibernate.format_sql", Boolean.TRUE);
-		props.put("hibernate.current_session_context_class", "thread");
+//		props.put("hibernate.current_session_context_class", "thread"); //若使用getcurrentsession則隱藏此行
 		return props;
 	}
 	

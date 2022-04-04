@@ -26,14 +26,14 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <body>
 	<div class='container'>
 		<h3 style="margin-top:20px">募資計畫明細</h3>
-		<form action="RaiseServlet" method="POST" style="display:inline">
+		<form action="raiseupdate.controller" method="POST" style="display:inline">
 			<div class="mb-3">
 			    <label for="Raise_Title" class="form-label"><b>計畫名稱</b></label>
-			    <input type="text" class="form-control" id="Raise_Title" name="Raise_Title" value="${raiseList[param.rCount].raiseTitle}" required="required">
+			    <input type="text" class="form-control" id="Raise_Title" name="Raise_Title" value="${raiseBean.raiseTitle}" required="required">
 			</div>
 			<div class="mb-3">
 			    <label for="Raise_Breif" class="form-label"><b>計畫簡述</b></label>
-			    <input type="text" class="form-control" id="Raise_Breif" name="Raise_Breif" aria-describedby="BreifInfo" value="${raiseList[param.rCount].raiseBreif}" required="required">
+			    <input type="text" class="form-control" id="Raise_Breif" name="Raise_Breif" aria-describedby="BreifInfo" value="${raiseBean.raiseBreif}" required="required">
 			    <div id="BreifInfo" class="form-text">請用簡短的兩三句話介紹這個計畫。</div>
 			</div>
 			<div class="mb-3">
@@ -53,19 +53,19 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 			</div>
 				<div class="mb-3">
 			    <label for="Raise_Target" class="form-label"><b>計畫目標資金</b></label>
-			    <div style="margin-top:0px"><input type="text" class="form-control" style="width:250px;float:left" id="Raise_Target" name="Raise_Target" aria-describedby="TargetInfo" placeholder="100000" value="${raiseList[param.rCount].raiseTarget}" required="required"><span style="line-height:38px;margin-left:10px">NTD</span></div>
+			    <div style="margin-top:0px"><input type="text" class="form-control" style="width:250px;float:left" id="Raise_Target" name="Raise_Target" aria-describedby="TargetInfo" placeholder="100000" value="${raiseBean.raiseTarget}" required="required"><span style="line-height:38px;margin-left:10px">NTD</span></div>
 			 	<div id="TargetInfo" class="form-text">請根據你計畫的需求，估算你所需要募集的金額。</div>
 			</div>
 			
 			<div class="mb-3" style="margin:0px">
 			 	<label for="Raise_PicName" class="form-label"><b>封面照片</b></label>
 			 	<input class="form-control uploadImages" style="width:250px" type="file" id="Raise_PicName" name="Raise_PicName">
-				<input type="hidden" id="Raise_PicBase64" name="Raise_PicBase64" value="${raiseList[param.rCount].raisePicBase64}">
-				<input type="hidden" id="Raise_PicName_default" name="Raise_PicName_default" value="${raiseList[param.rCount].raisePicName}">
-			 	<div style="margin:10px 0px 0px 0px">${raiseList[param.rCount].raisePicName}</div>
+				<input type="hidden" id="Raise_PicBase64" name="Raise_PicBase64" value="${raiseBean.raisePicBase64}">
+				<input type="hidden" id="Raise_PicName_default" name="Raise_PicName_default" value="${raiseBean.raisePicName}">
+			 	<div style="margin:10px 0px 0px 0px">${raiseBean.raisePicName}</div>
 			</div>
 			<div class="mb-3" id="previewPicDiv" style="margin-top:0px">
-				<img style="width:250px" name="${raiseList[param.rCount].raisePicName}" src="${raiseList[param.rCount].raisePicBase64}">
+				<img style="width:250px" name="${raiseBean.raisePicName}" src="${raiseBean.raisePicBase64}">
 			</div>
 
 			<div class="mb-3">			  
@@ -80,7 +80,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 			</div>
 			<label for="Raise_Describe" class="form-label"><b>計畫說明</b></label>
 			<div class="form-floating" style="margin-top:0px">
-				<textarea class="form-control" placeholder="" id="Raise_Describe" name="Raise_Describe" style="height: 200px" required>${raiseList[param.rCount].raiseDescribe}</textarea>   
+				<textarea class="form-control" placeholder="" id="Raise_Describe" name="Raise_Describe" style="height: 200px" required>${raiseBean.raiseDescribe}</textarea>   
 			    <div id="DescribeInfo" class="form-text">請告訴我們關於你計畫的故事、為什麼大家應該支持你的計畫。</div>
 			    <div id="DescribeInfo1" class="form-text">請注意：我們必須要有足夠的訊息才有辦法審核計畫，如果你所提供的資訊過少，或我們無法認證您計畫的真實性、可行性，計畫就會無法上架。</div>
 			</div>
@@ -88,19 +88,19 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 	        <div class="mb-3">
 	            <label for="RaisePlan_Amount_1" class="form-label"><b>回饋選項金額（一）</b>&emsp;<span style="color:red"></span></label>
 	            <div style="margin-top:0px"><input type="text" class="form-control nBlank" style="width:250px;float:left"
-	                    id="RaisePlan_Amount_1" name="RaisePlan_Amount_1" aria-describedby="TargetInfo" placeholder="300" value="${raiseList[param.rCount].raisePlanBeanSet.toArray()[0].raisePlanAmount}" required="required">
+	                    id="RaisePlan_Amount_1" name="RaisePlan_Amount_1" aria-describedby="TargetInfo" placeholder="300" value="${raiseBean.raisePlanBeanSet.toArray()[0].raisePlanAmount}" required="required">
 	            	<span style="line-height:38px;margin-left:10px">NTD</span>
 	            </div>
 	        </div>
 	         <div class="mb-3">
 	            <label for="RaisePlan_PicName_1" class="form-label"><b>回饋選項照片（一）</b></label>
 	            <input class="form-control uploadImages" style="width:250px" type="file" id="RaisePlan_PicName_1" name="RaisePlan_PicName_1">
-	        	<input type="hidden" id="RaisePlan_PicBase64_1" name="RaisePlan_PicBase64_1" value="${raiseList[param.rCount].raisePlanBeanSet.toArray()[0].raisePlanPicBase64}">
-				<input type="hidden" id="Raise_PicName_default_1" name="Raise_PicName_default_1" value="${raiseList[param.rCount].raisePlanBeanSet.toArray()[0].raisePlanPicName}">
-			 	<div style="margin:10px 0px 0px 0px">${raiseList[param.rCount].raisePlanBeanSet.toArray()[0].raisePlanPicName}</div>
+	        	<input type="hidden" id="RaisePlan_PicBase64_1" name="RaisePlan_PicBase64_1" value="${raiseBean.raisePlanBeanSet.toArray()[0].raisePlanPicBase64}">
+				<input type="hidden" id="RaisePlan_PicName_default_1" name="RaisePlan_PicName_default_1" value="${raiseBean.raisePlanBeanSet.toArray()[0].raisePlanPicName}">
+			 	<div style="margin:10px 0px 0px 0px">${raiseBean.raisePlanBeanSet.toArray()[0].raisePlanPicName}</div>
 	        </div>
 	        <div class="mb-3" id="previewPicDiv_1" style="margin-top:0px">
-				<img style="width:250px" name="${raiseList[param.rCount].raisePlanBeanSet.toArray()[0].raisePlanPicName}" src="${raiseList[param.rCount].raisePlanBeanSet.toArray()[0].raisePlanPicBase64}">
+				<img style="width:250px" name="${raiseBean.raisePlanBeanSet.toArray()[0].raisePlanPicName}" src="${raiseBean.raisePlanBeanSet.toArray()[0].raisePlanPicBase64}">
 			</div>
 	        
 	        <div class="mb-3">
@@ -110,26 +110,26 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 	        <div class="mb-3">
 		        <label for="RaisePlan_Describe_1" class="form-label"><b>回饋選項內容說明（一）</b>&emsp;<span style="color:red"></span></label>
 		        <div class="form-floating" style="margin-top:0px">
-		            <textarea class="form-control nBlank" id="RaisePlan_Describe_1" name="RaisePlan_Describe_1" style="height: 100px" required>${raiseList[param.rCount].raisePlanBeanSet.toArray()[0].raisePlanDescribe}</textarea>
+		            <textarea class="form-control nBlank" id="RaisePlan_Describe_1" name="RaisePlan_Describe_1" style="height: 100px" required>${raiseBean.raisePlanBeanSet.toArray()[0].raisePlanDescribe}</textarea>
 		            <div id="PlanDescribeInfo_1" class="form-text">僅供審核，之後可增加、刪減、或修改。</div>
 		        </div>
 	        </div>
 	        <div class="mb-3">
 	            <label for="RaisePlan_Amount_2" class="form-label"><b>回饋選項金額（二）</b>&emsp;<span style="color:red"></span></label>
 	            <div style="margin-top:0px"><input type="text" class="form-control nBlank" style="width:250px;float:left"
-	                    id="RaisePlan_Amount_2" name="RaisePlan_Amount_2" aria-describedby="TargetInfo" placeholder="1000" value="${raiseList[param.rCount].raisePlanBeanSet.toArray()[1].raisePlanAmount}" required="required">
+	                    id="RaisePlan_Amount_2" name="RaisePlan_Amount_2" aria-describedby="TargetInfo" placeholder="1000" value="${raiseBean.raisePlanBeanSet.toArray()[1].raisePlanAmount}" required="required">
 	            	<span style="line-height:38px;margin-left:10px">NTD</span>
 	            </div>
 	        </div>
 	         <div class="mb-3">
 	            <label for="RaisePlan_PicName_2" class="form-label"><b>回饋選項照片（二）</b></label>
 	            <input class="form-control uploadImages" style="width:250px" type="file" id="RaisePlan_PicName_2" name="RaisePlan_PicName_2">
-	        	<input type="hidden" id="RaisePlan_PicBase64_2" name="RaisePlan_PicBase64_2" value="${raiseList[param.rCount].raisePlanBeanSet.toArray()[1].raisePlanPicBase64}">
-				<input type="hidden" id="RaisePlan_PicName_default_2" name="RaisePlan_PicName_default_2" value="${raiseList[param.rCount].raisePlanBeanSet.toArray()[1].raisePlanPicName}">
-			 	<div style="margin:10px 0px 0px 0px">${raiseList[param.rCount].raisePlanBeanSet.toArray()[1].raisePlanPicName}</div>
+	        	<input type="hidden" id="RaisePlan_PicBase64_2" name="RaisePlan_PicBase64_2" value="${raiseBean.raisePlanBeanSet.toArray()[1].raisePlanPicBase64}">
+				<input type="hidden" id="RaisePlan_PicName_default_2" name="RaisePlan_PicName_default_2" value="${raiseBean.raisePlanBeanSet.toArray()[1].raisePlanPicName}">
+			 	<div style="margin:10px 0px 0px 0px">${raiseBean.raisePlanBeanSet.toArray()[1].raisePlanPicName}</div>
 	        </div>
 	        <div class="mb-3" id="previewPicDiv_2" style="margin-top:0px">
-				<img style="width:250px" name="${raiseList[param.rCount].raisePlanBeanSet.toArray()[1].raisePlanPicName}" src="${raiseList[param.rCount].raisePlanBeanSet.toArray()[1].raisePlanPicBase64}">
+				<img style="width:250px" name="${raiseBean.raisePlanBeanSet.toArray()[1].raisePlanPicName}" src="${raiseBean.raisePlanBeanSet.toArray()[1].raisePlanPicBase64}">
 			</div>
 	        
 	        <div class="mb-3">
@@ -139,7 +139,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 	        <div class="mb-3">
 		        <label for="RaisePlan_Describe_2" class="form-label"><b>回饋選項內容說明（二）</b>&emsp;<span style="color:red"></span></label>
 		        <div class="form-floating" style="margin-top:0px">
-		            <textarea class="form-control nBlank" id="RaisePlan_Describe_2" name="RaisePlan_Describe_2" style="height: 100px" required>${raiseList[param.rCount].raisePlanBeanSet.toArray()[1].raisePlanDescribe}</textarea>
+		            <textarea class="form-control nBlank" id="RaisePlan_Describe_2" name="RaisePlan_Describe_2" style="height: 100px" required>${raiseBean.raisePlanBeanSet.toArray()[1].raisePlanDescribe}</textarea>
 		            <div id="PlanDescribeInfo_2" class="form-text">僅供審核，之後可增加、刪減、或修改。</div>
 		        </div>
 	        </div>
@@ -149,28 +149,27 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 			
 			
 			<br>
-			<input type="hidden" name="donext" value="RaiseUpdate">
-			<input type="hidden" name="rID" value="${param.rID}">
-			<input type="hidden" name="rpId1" value="${raiseList[param.rCount].raisePlanBeanSet.toArray()[0].raisePlanNo}">			
-			<input type="hidden" name="rpId2" value="${raiseList[param.rCount].raisePlanBeanSet.toArray()[1].raisePlanNo}">			
-			<button type="submit" class="btn btn-primary">確認修改</button>
-		</form>
+
 		<c:choose>
 		    <c:when test="${param.donext=='RaiseReview'}">
-			    <form action="RaiseServlet" method="POST" style="display:inline">
-			    	<input type="hidden" name="donext" value="RaiseReview">
-					<input type="hidden" name="rID" value="${param.rID}">
+		    </form>
+			    <form action="raisereview.controller" method="POST" style="display:inline">
+					<input type="hidden" name="rID" value="${raiseBean.raiseNo}">
 					<input type="hidden" name="rComment" value="Approved">
 			        <button type="submit" class="btn btn-success">審核通過</button> 
 				</form>
-				<form action="RaiseServlet" method="POST" style="display:inline">
-			    	<input type="hidden" name="donext" value="RaiseReview">
-					<input type="hidden" name="rID" value="${param.rID}">
+				<form action="raisereview.controller" method="POST" style="display:inline">
+					<input type="hidden" name="rID" value="${raiseBean.raiseNo}">
 					<input type="hidden" name="rComment" value="Rejected">
 			        <button type="submit" class="btn btn-danger">駁回</button> 
 				</form>
 		    </c:when>
 		    <c:otherwise>
+					<input type="hidden" name="rID" value="${raiseBean.raiseNo}">
+					<input type="hidden" name="rpId1" value="${raiseBean.raisePlanBeanSet.toArray()[0].raisePlanNo}">			
+					<input type="hidden" name="rpId2" value="${raiseBean.raisePlanBeanSet.toArray()[1].raisePlanNo}">			
+					<button type="submit" class="btn btn-primary">確認修改</button>
+				</form>
 		    </c:otherwise>
 		</c:choose>
 		<br>
@@ -184,11 +183,11 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 	    crossorigin="anonymous">
 	</script>
 	<script>
-		let theCategory="${raiseList[param.rCount].raiseCategory}";
-		let theSDate="${raiseList[param.rCount].raiseSDate}";
-		let theExpDate="${raiseList[param.rCount].raiseExpDate}";
-		let theADate1="${raiseList[param.rCount].raisePlanBeanSet.toArray()[0].raisePlanADate}"; //回饋一預計實現日期
-		let theADate2="${raiseList[param.rCount].raisePlanBeanSet.toArray()[1].raisePlanADate}"; //回饋二預計實現日期
+		let theCategory="${raiseBean.raiseCategory}";
+		let theSDate="${raiseBean.raiseSDate}";
+		let theExpDate="${raiseBean.raiseExpDate}";
+		let theADate1="${raiseBean.raisePlanBeanSet.toArray()[0].raisePlanADate}"; //回饋一預計實現日期
+		let theADate2="${raiseBean.raisePlanBeanSet.toArray()[1].raisePlanADate}"; //回饋二預計實現日期
 
 		if(theCategory != ""){
 			$(`#Raise_Category option[value=\${theCategory}]`).remove(); //刪除Select中Value為選項的Option

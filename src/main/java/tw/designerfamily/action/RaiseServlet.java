@@ -31,8 +31,7 @@ import tw.designerfamily.util.HibernateUtil;
  * @Description:
  * @Date: 2022/3/17
  */
-@Controller
-@WebServlet("/RaiseServlet")
+//@WebServlet("/RaiseServlet")
 public class RaiseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

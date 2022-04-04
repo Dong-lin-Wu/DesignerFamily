@@ -2,9 +2,7 @@ package tw.designerfamily.model;
 
 import java.util.List;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,15 +38,17 @@ public class RaiseBeanService implements IRaiseBeanService {
 		rDao.deleteById(id);
 	}
 	
-	//介面之外的方法
+	//共用介面之外的方法
+	@Override
 	public List<RaiseBean> searchByKey(String key){
-//		return rDao.searchByKey(key);
-		return new RaiseDao().searchByKey(key);
+		return rDao.searchByKey(key);
+//		return new RaiseDao().searchByKey(key);
 	}
 	
+	@Override
 	public void updateStatus(int id, String status) {
-//		rDao.updateStatus(id, status);
-		new RaiseDao().updateStatus(id, status);
+		rDao.updateStatus(id, status);
+//		new RaiseDao().updateStatus(id, status);
 	}
 	
 

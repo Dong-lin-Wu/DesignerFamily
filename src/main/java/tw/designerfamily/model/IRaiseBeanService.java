@@ -8,4 +8,6 @@ public interface IRaiseBeanService {
 	public RaiseBean selectById(int id);
 	public void update(RaiseBean tBean);
 	public void deleteById(int id);
+	public List<RaiseBean> searchByKey(String key);
+	public void updateStatus(int id, String status);
 }

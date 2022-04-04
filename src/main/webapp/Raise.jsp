@@ -53,12 +53,13 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 	<div class="pd-ltr-20">
 		<h2>募資清單</h2>
 		<br>
-		<form action="RaiseAdd.jsp" method="post" style="float:left">
+		<form action="raiseindexdonext.controller" method="post" style="float:left">
+			<input type="hidden" name="donext" value="RaiseAdd">
+			<input type="hidden" name="rID" value="0">
 			<button type="submit" class="btn btn-outline-primary" style="margin-bottom:15px">新增</button>
 		</form>
-		<form action="RaiseServlet" method="post" class="row g-3" style="float:right">
+		<form action="raiseindexsearch.controller" method="post" class="row g-3" style="float:right">
 			<div class="col-auto">
-				<input type="hidden" name="donext" value="RaiseSearch">
 				<input type="text" class="form-control" id="Raise_Search" name="Raise_Search" size="30">
 			</div>
 			<div class="col-auto">
@@ -81,7 +82,6 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 			    </tr>
 			</thead>
 			<tbody>
-				<% int rCount=0 ;%>
 				<c:forEach var="rl" items="${raiseList}">
 					<tr>
 						<td>${rl.getRaiseNo()}</td>
@@ -93,16 +93,14 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 						<td><img style="width:250px" src="${rl.getRaisePicBase64()}"></td>
 						<td>${rl.getRaiseStatus()}</td>	
 						<td>
-							<form style="display:inline" action="RaiseUpdate.jsp" method="post">
+							<form style="display:inline" action="raiseindexdonext.controller" method="post">
 								<input type="hidden" name="donext" value="RaiseReview">
 								<input type="hidden" name="rID" value="${rl.getRaiseNo()}">
-								<input type="hidden" name="rCount" value="<%= rCount %>">
-								<button type="submit" class="btn btn-outline-secondary">詳細</button>
+								<button type="submit" class="btn btn-outline-secondary">審核</button>
 							</form>
-							<form style="display:inline" action="RaiseUpdate.jsp" method="post">
+							<form style="display:inline" action="raiseindexdonext.controller" method="post">
 								<input type="hidden" name="donext" value="RaiseUpdate">
 								<input type="hidden" name="rID" value="${rl.getRaiseNo()}">
-								<input type="hidden" name="rCount" value="<%= rCount %>">
 								<button type="submit" class="btn btn-outline-success">修改</button>
 							</form>
 							
@@ -110,7 +108,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 							<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal${rl.getRaiseNo()}">刪除</button>
 							
 							<!-- Modal -->
-							<form style="display:inline" action="raisedelete.controller" method="post">
+							<form style="display:inline" action="raiseindexdonext.controller" method="post">
 								<input type="hidden" name="donext" value="RaiseDelete">
 								<input type="hidden" name="rID" value="${rl.getRaiseNo()}">
 								<div class="modal fade" id="exampleModal${rl.getRaiseNo()}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -133,7 +131,6 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 							</form>
 						</td>
 					</tr>
-					<%rCount++; %>
 				</c:forEach>
 			   
 			</tbody>

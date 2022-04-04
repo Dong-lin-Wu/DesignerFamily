@@ -27,7 +27,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <body>
 	<div class='container'>
 		<h3 style="margin-top:20px">募資提案</h3>
-		<form action="RaiseServlet" method="POST">
+		<form action="raiseinsert.controller" method="POST">
 	        <div class="mb-3">
 	            <label for="Raise_Title" class="form-label"><b>計畫名稱</b>&emsp;<span style="color:red"></span></label>
 	            <input type="text" class="form-control nBlank" id="Raise_Title" name="Raise_Title" required="required">
@@ -141,7 +141,6 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 	        </div>
 	        
 	        <br>
-               <input type="hidden" name="donext" value="RaiseAdd">
                <button type="submit" class="btn btn-primary">Submit</button>
                <button type="button" id="idWriteAll" class="btn btn-secondary" onclick="writeAll()">一鍵輸入</button>
             <br>
