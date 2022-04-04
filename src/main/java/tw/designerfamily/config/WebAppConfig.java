@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -21,14 +22,20 @@ public class WebAppConfig implements WebMvcConfigurer {
 	}
 	
 //	路徑去頭去尾
-//	@Bean
-//	public InternalResourceViewResolver viewResolver() {
-//		InternalResourceViewResolver irvr = new InternalResourceViewResolver();
-//		irvr.setPrefix("/WEB-INF/pages/");
-//		irvr.setSuffix(".jsp");
-//		irvr.setOrder(6);
-//		return irvr;
-//		
-//	}
-
+	@Bean
+	public InternalResourceViewResolver viewResolver() {
+		InternalResourceViewResolver irvr = new InternalResourceViewResolver();
+		irvr.setPrefix("/WEB-INF/pages/");
+		irvr.setSuffix(".jsp");
+		irvr.setOrder(6);
+		return irvr;
+		
+	}
+	
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addRedirectViewController("/", "raiseindex.controller");
+//		registry.addViewController("/resourcesAction").setViewName("staticResources");
+		
+	}
 }

@@ -40,11 +40,26 @@ public class RaiseController {
 
 	// Raise首頁:raiseindex.controller
 	@RequestMapping(path = "/raiseindex.controller", method = RequestMethod.GET) // 首頁要用get(自己測試時)
-	public String processAction(Model model) {
+	public String processAction0(Model model) {
 		redirectToRaiseIndex(model);
-		return "redirect: Raise.jsp"; // sendredirect
+		return "Raise";
 	}
-
+	
+	@RequestMapping(path = "/raiseindex", method = RequestMethod.GET) // 首頁要用get(自己測試時)
+	public String processAction1(Model model) {
+		return "Raise";
+	}
+	
+	@RequestMapping(path = "/raiseadd", method = RequestMethod.GET) // 首頁要用get(自己測試時)
+	public String processAction2(Model model) {
+		return "RaiseAdd";
+	}
+	
+	@RequestMapping(path = "/raiseupdate", method = RequestMethod.GET) // 首頁要用get(自己測試時)
+	public String processAction3(Model model) {
+		return "RaiseUpdate";
+	}
+	
 	// 導回Raise首頁時查詢全部放入session
 	public void redirectToRaiseIndex(Model model) {
 		List<RaiseBean> rlist = rService.selectAll();
@@ -56,24 +71,26 @@ public class RaiseController {
 	public String processToNext(@RequestParam("donext") String donext, @RequestParam("rID") int id, Model model) {
 		if (donext == null) {
 			redirectToRaiseIndex(model);
-			return "redirect: Raise.jsp";
+			return "redirect: raiseindex";
 		} else if (donext.equals("RaiseAdd")) {
-			return "redirect: RaiseAdd.jsp";
+			return "redirect: raiseadd";
 		} else if (donext.equals("RaiseReview")) {
 			model.addAttribute("donext", "RaiseReview");
 			RaiseBean raiseBean = rService.selectById(id);
 			model.addAttribute("raiseBean", raiseBean);
-			return "redirect: RaiseUpdate.jsp";
+			return "redirect: raiseupdate";
 		} else if (donext.equals("RaiseUpdate")) {
+			model.addAttribute("donext", "RaiseUpdate");
 			RaiseBean raiseBean = rService.selectById(id);
 			model.addAttribute("raiseBean", raiseBean);
-			return "redirect: RaiseUpdate.jsp";
+			return "redirect: raiseupdate";
 		} else if (donext.equals("RaiseDelete")) {
 			rService.deleteById(id);
 			redirectToRaiseIndex(model);
-			return "redirect: Raise.jsp";
+			return "redirect: raiseindex";
 		}
-		return "redirect: Raise.jsp";
+		redirectToRaiseIndex(model);
+		return "redirect: raiseindex";
 	}
 
 	// 於新增頁面按下送出並導回首頁
@@ -115,7 +132,7 @@ public class RaiseController {
 
 		rService.insert(rBean);
 		redirectToRaiseIndex(model);
-		return "redirect: Raise.jsp";
+		return "redirect: raiseindex";
 	}
 
 	// 於修改頁面按下送出並導回首頁
@@ -161,7 +178,7 @@ public class RaiseController {
 		rBean.setRaisePlanBeanSet(rpBeans);
 		rService.update(rBean);
 		redirectToRaiseIndex(model);
-		return "redirect: Raise.jsp";
+		return "redirect: raiseindex";
 	}
 
 	// 於審核頁面按下送出並導回首頁
@@ -169,7 +186,7 @@ public class RaiseController {
 	public String processReview(@RequestParam("rComment") String rComment, @RequestParam("rID") int id, Model model) {
 		rService.updateStatus(id, rComment);
 		redirectToRaiseIndex(model);
-		return "redirect: Raise.jsp";
+		return "redirect: raiseindex";
 	}
 	
 	//於首頁依照關鍵字搜尋
@@ -177,6 +194,6 @@ public class RaiseController {
 	public String processSearch(@RequestParam("Raise_Search") String key, Model model) {
 	    List<RaiseBean> rlist = rService.searchByKey(key);
 	    model.addAttribute("raiseList", rlist);
-	    return "redirect: Raise.jsp";
+	    return "redirect: raiseindex";
 	}
 }

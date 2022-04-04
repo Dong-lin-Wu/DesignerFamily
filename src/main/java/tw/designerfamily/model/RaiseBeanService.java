@@ -42,13 +42,11 @@ public class RaiseBeanService implements IRaiseBeanService {
 	@Override
 	public List<RaiseBean> searchByKey(String key){
 		return rDao.searchByKey(key);
-//		return new RaiseDao().searchByKey(key);
 	}
 	
 	@Override
 	public void updateStatus(int id, String status) {
 		rDao.updateStatus(id, status);
-//		new RaiseDao().updateStatus(id, status);
 	}
 	
 
