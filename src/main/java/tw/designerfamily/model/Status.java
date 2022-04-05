@@ -12,8 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name = "status")
+@Component
 public class Status implements Serializable {
 
 	private static final long serialVersionUID = 1L;

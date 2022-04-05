@@ -22,16 +22,15 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
 
-<title>Insert title here</title>
+<title>商品新增</title>
 </head>
 <body>
 	<div class='container'>
-		<form action="ProductServlet" method="post" style="margin-top:1em;" >
-			<input type="hidden" name="donext" value="ProductSearch"> <input
-				class="form-control" type="hidden" name="search_keyword"
+		<form action="product" method="post" style="margin-top:1em;" >
+			<input class="form-control" type="hidden" name="search_keyword"
 				id="search_keyword" style="display: inline" />
 			<button type="submit" class="btn btn-light"
-				style="margin-bottom: 5px;display: flex;align-items: center;">
+				style="margin-bottom: 5px; display: flex; align-items: center;">
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 					fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
   <path fill-rule="evenodd"
@@ -44,7 +43,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 		</form>
 
 		<h3 style="margin-top: 20px">新增商品</h3>
-		<form action="ProductServlet" method="POST" enctype="multipart/form-data">
+		<form action="addProduct" method="POST" enctype="multipart/form-data">
 			<div class="mb-3">
 				<label for="commTitle" class="form-label">商品標題</label> <input
 					type="text" class="form-control" id="commTitle" name="commTitle"
@@ -97,19 +96,67 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 			
 			<div class="mb-3">
 				<label for="commDES" class="form-label">圖片</label> <input
-					type="file" class="form-control" id="commImg"
-					name="photo" aria-describedby="DESInfo" required="required">
-				<div id="DESInfo" class="form-text">請上傳圖片。</div>
+					class="form-control uploadImages" style="width:250px" type="file" id="commImg" name="commImg"  aria-describedby="DESInfo">
+						<input type="hidden" id="product_PicBase64" name="product_PicBase64" value="">
 			</div>
-			
-			
-			<input type="hidden" name="donext" value="ProductAdd">
+			<div class="mb-3" id="previewPicDiv"></div>
+				<br/>
 			<button type="submit" class="btn btn-primary" name="upload">Submit</button>
 		</form>
-
-
-
-
 	</div>
+	
+	<script
+	    src="https://code.jquery.com/jquery-3.6.0.js"
+	    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	    crossorigin="anonymous">
+	</script>
+	
+	<script>
+	// 預覽圖片，將取得的files一個個取出丟到convertFile()
+	function previewFiles(theImgs) {
+		if (theImgs[0].files && theImgs[0].files.length >= 1) {
+			$.map(theImgs[0].files, file => {
+				convertFile(file)
+					.then(data => {
+					//console.log(data) // 把編碼後的字串輸出到console
+					showPreviewImage(theImgs, data, file.name)
+					})
+					.catch(err => console.log(err))
+					
+			})
+		}
+	}
+	
+	// 使用FileReader讀取檔案，並且回傳Base64編碼後的source
+	function convertFile(file) {
+		return new Promise((resolve,reject)=>{
+			// 建立FileReader物件
+			let reader = new FileReader()
+			// 註冊onload事件，取得result則resolve (會是一個Base64字串)
+			reader.onload = () => { resolve(reader.result) }
+			// 註冊onerror事件，若發生error則reject
+			reader.onerror = () => { reject(reader.error) }
+			// 讀取檔案
+			reader.readAsDataURL(file)
+		})
+	}
+	
+	// 在頁面上新增<img>
+	function showPreviewImage(theImgs, src, fileName) {
+		let image = new Image(250) // 設定寬50px
+		image.name = fileName
+		image.src = src // <img>中src屬性除了接url外也可以直接接Base64字串
+		theImgs.closest("div").next().append(image);
+		theImgs.next().attr("value",src);
+	}
+	
+	// 當上傳檔案改變時清除目前預覽圖，並且呼叫previewFiles()
+	$(".uploadImages").change(function(){
+		$(this).closest("div").next().empty();
+		previewFiles($(this)); // this即為<input>元素
+	})
+
+
+	</script>
 </body>
 </html>

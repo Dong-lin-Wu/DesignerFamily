@@ -1,10 +1,6 @@
 package tw.designerfamily.model;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,6 +46,20 @@ public class Order implements Serializable{
 		
 	}
 	
+    //產生訂單用
+	public Order(String orderOwner, String orderName, int orderQty, int orderPrice,
+			String orderStatus, String orderKey) {
+		super();
+		this.orderOwner = orderOwner;
+		this.orderName = orderName;
+		this.orderQty = orderQty;
+		this.orderPrice = orderPrice;
+		this.orderStatus = orderStatus;
+		this.orderKey = orderKey;
+	}
+
+
+
 
 
 	public int getOrderNo() {

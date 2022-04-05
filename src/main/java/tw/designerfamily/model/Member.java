@@ -14,12 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name = "member")
-public class Member implements Serializable{
+@Component
+public class Member implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,6 +98,17 @@ public class Member implements Serializable{
 		this.photo = photo;
 		this.registerTime = registerTime;
 		this.statusId = statusId;
+	}
+
+	public Member(String account, String email, String phone, String gender, Timestamp birthday, Timestamp registerTime,
+			Status status) {
+		this.account = account;
+		this.email = email;
+		this.phone = phone;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.registerTime = registerTime;
+		this.status = status;
 	}
 
 	public int getId() {

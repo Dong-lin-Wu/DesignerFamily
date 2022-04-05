@@ -45,17 +45,17 @@ public class RaiseController {
 		return "Raise";
 	}
 	
-	@RequestMapping(path = "/raiseindex", method = RequestMethod.GET) // 首頁要用get(自己測試時)
+	@RequestMapping(path = "/raiseindex", method = RequestMethod.GET) 
 	public String processAction1(Model model) {
 		return "Raise";
 	}
 	
-	@RequestMapping(path = "/raiseadd", method = RequestMethod.GET) // 首頁要用get(自己測試時)
+	@RequestMapping(path = "/raiseadd", method = RequestMethod.GET)
 	public String processAction2(Model model) {
 		return "RaiseAdd";
 	}
 	
-	@RequestMapping(path = "/raiseupdate", method = RequestMethod.GET) // 首頁要用get(自己測試時)
+	@RequestMapping(path = "/raiseupdate", method = RequestMethod.GET)
 	public String processAction3(Model model) {
 		return "RaiseUpdate";
 	}
@@ -191,7 +191,7 @@ public class RaiseController {
 	
 	//於首頁依照關鍵字搜尋
 	@RequestMapping(path = "/raiseindexsearch.controller", method = RequestMethod.POST)
-	public String processSearch(@RequestParam("Raise_Search") String key, Model model) {
+	public String processSearch(@RequestParam("keyword") String key, Model model) {
 	    List<RaiseBean> rlist = rService.searchByKey(key);
 	    model.addAttribute("raiseList", rlist);
 	    return "redirect: raiseindex";

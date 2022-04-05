@@ -27,7 +27,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 <title>Product</title>
 <style>
 .description {
-	max-width: 200px;
+	max-width: 100px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -35,10 +35,13 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 </style>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="header1.jsp" %>
+        <div class="main-container">
+<div class="pd-ltr-20">
+</div></div>
 	<div class="container">
 		<h3 style="display: inline">商品清單&nbsp;</h3>
-		<form action="ProductServlet" method="post" style="display: inline">
+		<form action="product" method="post" style="display: inline">
 			<input type="hidden" name="donext" value="ProductSearch"> <input
 				class="form-control" type="hidden" name="search_keyword"
 				id="search_keyword" style="display: inline" />
@@ -55,26 +58,14 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 		</form>
 
 		<div id="searchtb_productinfo" style="padding: 2px 5px;">
-			<div class="col-auto" style="padding: 3px">
-				<form action="ProductServlet" method="post" style="display: inline">
-					商品編號: <input type="hidden" name="donext" value="ProductSearchNo">
-					<input class="form-control" type="text" name="search_no"
-						id="search_no" style="width: 110px; display: inline"
-						required="required" />
-
+			<div class="col-auto" style="padding:0px">
+				<form action="searchProduct" method="post" style="display: inline">
+					<input class="form-control" type="text" name="search"
+						id="search" style="width: 250px; display: inline" />
 					<button type="submit" class="btn btn-outline-secondary">查詢</button>
-
 				</form>
-				<form action="ProductServlet" method="post" style="display: inline">
-					&nbsp;&nbsp;關鍵字: <input type="hidden" name="donext"
-						value="ProductSearch"> <input class="form-control"
-						type="text" name="search_keyword" id="search_keyword"
-						style="width: 110px; display: inline" required="required" />
 
-					<button type="submit" class="btn btn-outline-secondary">查詢</button>
-
-				</form>
-				<a href="ProductAdd.jsp" style="float: right"><button
+				<a href="transtoadd" style="float: right"><button
 						type="button" class="btn btn-outline-primary">新增</button></a>
 			</div>
 		</div>
@@ -103,7 +94,7 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 				<c:forEach var="pl" items="${productList}">
 					<tr>
 						<td>${pl.getCommNo()}</td>
-						<td style="width: 180px">${pl.getCommTitle()}</td>
+						<td class="description">${pl.getCommTitle()}</td>
 						<td class="description">${pl.getCommDES()}</td>
 						<td>${pl.getCommSPE()}</td>
 						<td>${pl.getCategory()}</td>
@@ -111,23 +102,21 @@ response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
 						<td>${pl.getCommPrice()}</td>
 						<td>${pl.getCommQuantity()}</td>
 						<td width="100px" align="right"><img
-							src="img/${pl.getCommImg()}" width="100%"></td>
+							src="${pl.getCommImg()}" width="100%"></td>
 
-						<td style="width: 80px">
-							<form style="display: inline" action="ProductUpdate.jsp"
-								method="post">
-								<input type="hidden" name="donext" value="ProductUpdate">
-								<input type="hidden" name="id" value="<%=count%>">
-								<button type="submit" class="btn btn-outline-success"
-									style="margin-bottom: 10px">修改</button>
+						<td>
+							<form style="display: inline" action="reviseProduct" method="post">
+								<input type="hidden" name="commNo" value="${pl.getCommNo()}">
+								<button type="submit" class="btn btn-outline-success">修改</button>
 							</form> <!-- Button trigger modal -->
+							
 							<button type="button" class="btn btn-outline-danger"
 								data-bs-toggle="modal"
-								data-bs-target="#exampleModal${pl.getCommNo()}">刪除</button> <!-- Modal -->
-							<form style="display: inline" action="ProductServlet"
-								method="post">
-								<input type="hidden" name="donext" value="ProductDelete">
-								<input type="hidden" name="delete" value="${pl.getCommNo()}">
+								data-bs-target="#exampleModal${pl.getCommNo()}">刪除</button> 
+								
+								<!-- Modal -->
+							<form style="display: inline" action="deleteProduct" method="post">
+								<input type="hidden" name="commNo" value="${pl.getCommNo()}">
 								<div class="modal fade" id="exampleModal${pl.getCommNo()}"
 									tabindex="-1" aria-labelledby="exampleModalLabel"
 									aria-hidden="true">

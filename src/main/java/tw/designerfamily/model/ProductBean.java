@@ -52,7 +52,7 @@ public class ProductBean implements Serializable {
 
 	public ProductBean() {
 	}
-
+	
 	// 新增的建構子(無編號)
 	public ProductBean(String commTitle, String commDES, String commSPE, String category, String designer,
 			int commPrice, int commQuantity, String commImg) {

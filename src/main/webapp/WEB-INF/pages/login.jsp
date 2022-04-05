@@ -1,86 +1,160 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ page import="java.util.*" %>
-        <!DOCTYPE html>
-        <html>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ page import="java.util.*" %>
+            <!DOCTYPE html>
+            <html>
 
-        <head>
-            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-            <title>login</title>
-            <style>
-                fieldset {
-                    width: 400px;
-                    margin: auto;
-                    margin-top: 200px;
-                }
+            <head>
+                <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+                <title>login</title>
 
-                legend {
-                    margin-left: 50px;
-                    padding: 15px;
-                    font-size: 150%;
-                    font-weight: bold;
-                }
+                <!-- Site favicon -->
+                <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
+                <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+                <link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
 
-                div {
-                    width: 250px;
-                    margin: auto;
-                    margin-bottom: 20px;
-                    text-align: center;
-                }
+                <!-- Mobile Specific Metas -->
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-                input {
-                    width: 226px;
-                    padding: 10px;
-                    font-size: 15px;
-                }
+                <!-- Google Font -->
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+                    rel="stylesheet">
+                <!-- CSS -->
+                <link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
+                <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
+                <link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
 
-                #submit {
-                    width: 250px;
-                }
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+                <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
 
-                a {
-                    line-height: 50px;
-                }
+                    gtag('config', 'UA-119386393-1');
+                </script>
+                <style>
 
-                ul {
-                    width: 100px;
-                    margin: auto;
-                    padding: 0px;
-                    list-style-type: none;
-                }
-            </style>
-        </head>
+                </style>
+            </head>
 
-        <body>
-            <fieldset>
-                <legend>登入</legend>
-                <form action="login" method="post">
-                    <div>
-                        <input type="text" name="account" id="account" placeholder="電話號碼/使用者名稱/Email" required>
+            <body class="login-page">
+                <div class="login-header box-shadow">
+                    <div class="container-fluid d-flex justify-content-between align-items-center">
+                        <div class="brand-logo">
+                            <a href="login">
+                                <img src="vendors/images/deskapp-logo.svg" alt="">
+                            </a>
+                        </div>
+                        <div class="login-menu">
+                            <ul>
+                                <li><a href="registerform">註冊</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div>
-                        <input type="password" name="password" id="password" placeholder="密碼" required>
+                </div>
+                <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 col-lg-7">
+                                <img src="vendors/images/login-page-img.png" alt="">
+                            </div>
+                            <div class="col-md-6 col-lg-5">
+                                <div class="login-box bg-white box-shadow border-radius-10">
+                                    <div class="login-title">
+                                        <h2 class="text-center text-primary">登入至 DeskApp</h2>
+                                    </div>
+                                    <form action="checklogin" method="post">
+                                        <div class="select-role">
+                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn active">
+                                                    <input type="radio" name="status" id="admin" value="9,8" checked>
+                                                    <div class="icon"><img src="vendors/images/briefcase.svg"
+                                                            class="svg" alt=""></div>
+                                                    <span>我是</span>
+                                                    管理員
+                                                </label>
+                                                <label class="btn">
+                                                    <input type="radio" name="status" id="user" value="0,0">
+                                                    <div class="icon"><img src="vendors/images/person.svg" class="svg"
+                                                            alt=""></div>
+                                                    <span>我是</span>
+                                                    一般會員
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="input-group custom">
+                                            <input type="text" class="form-control form-control-lg" name="account"
+                                                id="account" placeholder="電話號碼/使用者名稱/Email" required>
+                                            <div class="input-group-append custom">
+                                                <span class="input-group-text"><i
+                                                        class="icon-copy dw dw-user1"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="input-group custom">
+                                            <input type="password" class="form-control form-control-lg" name="password"
+                                                id="password" placeholder="密碼" required>
+                                            <div class="input-group-append custom">
+                                                <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-30">
+                                            <div class="col-6">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="customCheck1">
+                                                    <label class="custom-control-label"
+                                                        for="customCheck1">Remember</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="forgot-password"><a href="forgot-password.html">Forgot
+                                                        Password</a></div>
+                                            </div>
+                                        </div>
+                                        <div style="margin-bottom: 5px; text-align: center;">
+                                            <% List<String> errors=(List<String>) request.getAttribute("errors");
+                                                    if(errors!=null){
+                                                    %>
+                                                    <ul style="color:red">
+                                                        <% for(String error : errors){ %>
+                                                            <li>
+                                                                <%= error %>
+                                                            </li>
+                                                            <% } %>
+                                                    </ul>
+                                                    <% } %>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="input-group mb-0">
+                                                    <!--
+                                                        use code for form submit
+                                                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
+                                                    -->
+                                                    <button class="btn btn-primary btn-lg btn-block"
+                                                        type="submit">登入</button>
+                                                </div>
+                                                <div class="font-16 weight-600 pt-10 pb-10 text-center"
+                                                    data-color="#707373">或</div>
+                                                <div class="input-group mb-0">
+                                                    <a class="btn btn-outline-primary btn-lg btn-block"
+                                                        href="registerform">註冊</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <input type="submit" name="submit" id="submit" value="登入">
-                    </div>
-                </form>
-            </fieldset>
-            <div>
-                <a href="registerform.jsp">註冊</a>
-            </div>
-            <div>
-                <% List<String> errors=(List<String>) request.getAttribute("errors");
-                        if(errors!=null){
-                        %>
-                        <ul style="color:red">
-                            <% for(String error : errors){ %>
-                                <li>
-                                    <%= error %>
-                                </li>
-                                <% } %>
-                        </ul>
-                        <% } %>
-            </div>
-        </body>
+                </div>
 
-        </html>
+                <!-- js -->
+                <script src="vendors/scripts/core.js"></script>
+                <script src="vendors/scripts/script.min.js"></script>
+                <script src="vendors/scripts/process.js"></script>
+                <script src="vendors/scripts/layout-settings.js"></script>
+            </body>
+
+            </html>

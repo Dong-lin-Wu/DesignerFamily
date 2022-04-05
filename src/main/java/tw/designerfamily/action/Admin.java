@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class Logout {
+public class Admin {
 
-	@RequestMapping(path = "/logout", method = RequestMethod.GET)
+	@RequestMapping(path = "/admin", method = RequestMethod.GET)
 	public String processMainAction() {
-		return "redirect:/login";
+		return "index_admin";
 	}
 
 }

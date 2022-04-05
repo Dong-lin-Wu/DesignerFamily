@@ -3,21 +3,23 @@ package tw.designerfamily.model;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-public class ProductDao {
 
-	private Session session;
+@Repository
+@Transactional
+public class ProductDao implements IDesignerProductDao{
+	
+    @Autowired
+	private SessionFactory sessionFactory;
 
-	public ProductDao() {
-	}
-
-	public ProductDao(Session session) {
-		this.session = session;
-	}
-
-	// 新增商品
-	public void addProduct(ProductBean pBean){
+	@Override
+	public void insert(ProductBean pBean){
+		Session session = sessionFactory.getCurrentSession();
 		ProductBean resultBean = session.get(ProductBean.class, pBean.getCommNo());
 		
 		if(resultBean == null) {
@@ -28,9 +30,10 @@ public class ProductDao {
 		
 	}
 
-	// 依商品編號刪除商品
-	public void deleteByCOMM_No(int commNo) {
-	 	ProductBean resultBean = session.get(ProductBean.class, commNo);
+	@Override
+	public void deleteById(int id) {
+		Session session = sessionFactory.getCurrentSession();
+	 	ProductBean resultBean = session.get(ProductBean.class, id);
 	 	
 	 	if (resultBean != null) {
 			session.delete(resultBean);
@@ -38,24 +41,28 @@ public class ProductDao {
 		}
 	}
 
-	// 修改商品資料
-	public void update(ProductBean pBean) {
-		session.update(pBean);
+	@Override
+	public void update(ProductBean p) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(p);
 	}
 
-	// 檢視所有商品
+	@Override
 	public List<ProductBean> selectAll() {
+		Session session = sessionFactory.getCurrentSession();
 		Query<ProductBean> query = session.createQuery("from ProductBean", ProductBean.class);
 		return query.list();
 	}
 
-	// 依商品編號查詢
-	public ProductBean findByNo(int commNo) {
-		return session.get(ProductBean.class, commNo);
+	@Override
+	public ProductBean selectById(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(ProductBean.class, id);
 	}
 
-	// 關鍵字查詢
+	@Override
 	public List<ProductBean> findByKeyword(String keyword) {
+		Session session = sessionFactory.getCurrentSession();
 		Query<ProductBean> query = session.createQuery("from ProductBean where commTitle like ?0 or category like ?1 or designer like ?2 or commDES like ?3", ProductBean.class);
 		query.setParameter(0, "%" + keyword + "%");
 		query.setParameter(1, "%" + keyword + "%");

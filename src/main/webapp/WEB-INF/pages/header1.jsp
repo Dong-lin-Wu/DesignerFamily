@@ -5,36 +5,75 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <title>header</title>
+        
+        <!-- 從這裡(第一段) -->
+        <!-- Site favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
+
+        <!-- Mobile Specific Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet">
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
+        <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
+        <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-119386393-1');
+        </script>
+        <!-- 到這裡(第一段結束) -->
     </head>
-
     <body>
-<!--         <div class="pre-loader"> -->
-<!--             <div class="pre-loader-box"> -->
-<!--                 <div class="loader-logo"><img src="vendors/images/deskapp-logo.svg" alt=""></div> -->
-<!--                 <div class='loader-progress' id="progress_div"> -->
-<!--                     <div class='bar' id='bar1'></div> -->
-<!--                 </div> -->
-<!--                 <div class='percent' id='percent1'>0%</div> -->
-<!--                 <div class="loading-text"> -->
-<!--                     Loading... -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-
         <div class="header">
             <div class="header-left">
                 <div class="menu-icon dw dw-menu"></div>
                 <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
                 <div class="header-search">
-                    <form style="display:inline;" action="" method="post" id="select">
+                    <form>
                         <div class="form-group mb-0">
                             <i class="dw dw-search2 search-icon"></i>
-                            <input type="text" class="form-control search-input" placeholder="Search Here"
-                                name="keyword">
+                            <input type="text" class="form-control search-input" placeholder="Search Here">
                             <div class="dropdown">
-                                <a class="dropdown-toggle no-arrow" href="#" onclick="$('#select').submit()">
-                                    <i class="search_icon dw dw-search"></i>
+                                <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+                                    <i class="ion-arrow-down-c"></i>
                                 </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-2 col-form-label">From</label>
+                                        <div class="col-sm-12 col-md-10">
+                                            <input class="form-control form-control-sm form-control-line" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-2 col-form-label">To</label>
+                                        <div class="col-sm-12 col-md-10">
+                                            <input class="form-control form-control-sm form-control-line" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-2 col-form-label">Subject</label>
+                                        <div class="col-sm-12 col-md-10">
+                                            <input class="form-control form-control-sm form-control-line" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="btn btn-primary">Search</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -113,9 +152,14 @@
                             <span class="user-name">${sessionScope.login.account}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                            <a href="logout" class="dropdown-item">
-                                <i class="dw dw-logout"></i> 登出
-                            </a>
+                            <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                            <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
+                            <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                            <form style="display:inline;" action="logout" method="post" id="logout">
+                                <a href="#" onclick="$('#logout').submit()" class="dropdown-item">
+                                    <i class="dw dw-logout"></i> 登出
+                                </a>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -217,7 +261,7 @@
 
         <div class="left-side-bar">
             <div class="brand-logo">
-                <a href="admin">
+                <a href="index_admin.jsp">
                     <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
                     <img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
                 </a>
@@ -228,52 +272,87 @@
             <div class="menu-block customscroll">
                 <div class="sidebar-menu">
                     <ul id="accordion-menu">
-                        <li>
-                            <a href="admin" class="dropdown-toggle no-arrow">
-                                <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="members" class="dropdown-toggle no-arrow">
-                                <span class="micon icon-copy fa fa-user-o" aria-hidden="true"></span><span
-                                    class="mtext">成員</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="product" class="dropdown-toggle no-arrow">
-                                <span class="micon icon-copy dw dw-shop" aria-hidden="true"></span><span
-                                    class="mtext">商品</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="showorder" class="dropdown-toggle no-arrow">
-                                <span class="micon icon-copy dw dw-shopping-cart" aria-hidden="true"></span><span
-                                    class="mtext">訂單</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="dropdown-toggle no-arrow">
-                                <span class="micon icon-copy fa fa-newspaper-o" aria-hidden="true"></span><span
-                                    class="mtext">活動</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="dropdown-toggle no-arrow">
-                                <span class="micon icon-copy dw dw-chat-2" aria-hidden="true"></span><span
-                                    class="mtext">討論區</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="raiseindex.controller" class="dropdown-toggle no-arrow">
-                                <span class="micon icon-copy dw dw-sprout-1" aria-hidden="true"></span><span
-                                    class="mtext">募資</span>
-                            </a>
-                        </li>
+                        <form style="display:inline;" action="admin" method="post" id="index">
+                            <li>
+                                <input type="hidden" name="todo" value="index">
+                                <a href="#" onclick="$('#index').submit()" class="dropdown-toggle no-arrow">
+                                    <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+                                </a>
+                            </li>
+                        </form>
+                        <form style="display:inline;" action="admin" method="post" id="member">
+                            <li>
+                                <input type="hidden" name="todo" value="member">
+                                <a href="#" onclick="$('#member').submit()" class="dropdown-toggle no-arrow">
+                                    <span class="micon icon-copy fa fa-user-o" aria-hidden="true"></span>
+                                    <span class="mtext">成員</span>
+                                </a>
+                            </li>
+                        </form>
+                        <form style="display:inline;" action="admin" method="post" id="product">
+                            <li>
+                                <input type="hidden" name="todo" value="product">
+                                <a href="#" onclick="$('#product').submit()" class="dropdown-toggle no-arrow">
+                                <span class=" micon icon-copy dw dw-shop" aria-hidden="true"></span>
+                                       <span class="mtext">商品</span>
+                                </a>
+                            </li>
+                        </form>
+                        <form style="display:inline;" action="admin" method="post" id="order">
+                            <li>
+                                <input type="hidden" name="todo" value="order">
+                                <a href="#" onclick="$('#order').submit()" class="dropdown-toggle no-arrow">
+                                    <span class="micon icon-copy dw dw-shopping-cart" aria-hidden="true"></span><span
+                                        class="mtext">訂單</span>
+                                </a>
+                            </li>
+                        </form>
+                        <form style="display:inline;" action="admin" method="post" id="news">
+                            <li>
+                                <input type="hidden" name="todo" value="news">
+                                <a href="#" onclick="$('#news').submit()" class="dropdown-toggle no-arrow">
+                                    <span class="micon icon-copy fa fa-newspaper-o" aria-hidden="true"></span><span
+                                        class="mtext">活動</span>
+                                </a>
+                            </li>
+                        </form>
+                        <form style="display:inline;" action="admin" method="post" id="discuss">
+                            <li>
+                                <input type="hidden" name="todo" value="discuss">
+                                <a href="#" onclick="$('#discuss').submit()" class="dropdown-toggle no-arrow">
+                                    <span  class=" micon icon-copy dw dw-chat-2"></span>
+                                    <span class="mtext">討論區</span>
+                                </a>
+                            </li>
+                        </form>
+                        <form style="display:inline;" action="admin" method="post" id="raise">
+                            <li>
+                                <input type="hidden" name="todo" value="raise">
+                                <a href="#" onclick="$('#raise').submit()" class="dropdown-toggle no-arrow">
+                                    <span class="micon icon-copy dw dw-sprout-1" aria-hidden="true"></span><span
+                                        class="mtext">募資</span>
+                                </a>
+                            </li>
+                        </form>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="mobile-menu-overlay"></div>
+
+        <!-- 從這裡(第二段) -->
+        <!-- js -->
+        <script src="vendors/scripts/core.js"></script>
+        <script src="vendors/scripts/script.min.js"></script>
+        <script src="vendors/scripts/process.js"></script>
+        <script src="vendors/scripts/layout-settings.js"></script>
+        <script src="src/plugins/apexcharts/apexcharts.min.js"></script>
+        <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+        <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+        <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+        <script src="vendors/scripts/dashboard.js"></script>
+        <!-- 到這裡(第二段結束) -->
     </body>
 
     </html>

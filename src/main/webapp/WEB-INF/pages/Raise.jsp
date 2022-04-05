@@ -58,14 +58,6 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 			<input type="hidden" name="rID" value="0">
 			<button type="submit" class="btn btn-outline-primary" style="margin-bottom:15px">新增</button>
 		</form>
-		<form action="raiseindexsearch.controller" method="post" class="row g-3" style="float:right">
-			<div class="col-auto">
-				<input type="text" class="form-control" id="Raise_Search" name="Raise_Search" size="30">
-			</div>
-			<div class="col-auto">
-				<button type="submit" class="btn btn-outline-secondary">關鍵字查詢</button>
-			</div>
-		</form>
 		<div >
 			<table class="table" style="margin-top:20px">
 			<thead class="table-light">
@@ -150,7 +142,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 <script src="vendors/scripts/dashboard.js"></script>
 <script>
- 
+	$("#select").attr("action", "raiseindexsearch.controller");
 
 	//var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
 	//	  keyboard: false
