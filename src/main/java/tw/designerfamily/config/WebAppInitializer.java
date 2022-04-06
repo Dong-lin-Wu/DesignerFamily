@@ -3,6 +3,7 @@ package tw.designerfamily.config;
 import javax.servlet.Filter;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 //相當於web.xml的java程式組態
@@ -31,9 +32,11 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter cef = new CharacterEncodingFilter("UTF-8",true);
-//		cef.setEncoding("UTF-8");
-//		cef.setForceEncoding(true);
-		return new Filter[] {cef};
+
+		//Restful API 使用Put與Delete需要的
+		HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
+		
+		return new Filter[] {cef,hiddenHttpMethodFilter};
 	}
 	
 	

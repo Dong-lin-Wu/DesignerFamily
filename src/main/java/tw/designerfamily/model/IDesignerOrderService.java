@@ -11,6 +11,5 @@ public interface IDesignerOrderService {
 	public void deleteById(int id);
 	public List<Order> search(String key);
 	public Order updateorder(int orderNo, int orderQty, int orderPrice, String orderStatus);
-
-
+	public List<Order> detail(int key);
 }

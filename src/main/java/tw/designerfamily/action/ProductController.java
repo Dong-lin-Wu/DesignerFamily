@@ -56,7 +56,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(path = "/searchProduct", method = RequestMethod.POST)
-	public String processAction2(@RequestParam("search") String key, Model m) {
+	public String processAction2(@RequestParam("keyword") String key, Model m) {
 		List<ProductBean> product = service.findByKeyword(key);
 		m.addAttribute("productList", product);
 		

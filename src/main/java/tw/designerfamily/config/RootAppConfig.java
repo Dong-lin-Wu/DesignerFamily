@@ -47,6 +47,10 @@ public class RootAppConfig {
 		props.put("hibernate.show_sql", Boolean.TRUE);
 		props.put("hibernate.format_sql", Boolean.TRUE);
 //		props.put("hibernate.current_session_context_class", "thread"); //若使用getcurrentsession則隱藏此行
+		
+		//用來提供在Spring @Transactional中透過Session進行修改update()與刪除delete()方法
+		props.put("hibernate.allow_update_outside_transaction",Boolean.TRUE);
+		
 		return props;
 	}
 	

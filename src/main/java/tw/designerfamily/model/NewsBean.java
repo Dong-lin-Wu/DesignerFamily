@@ -10,35 +10,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity @Table(name = "news")
+import org.springframework.stereotype.Component;
+
+@Entity @Table(name = "news") @Component
 public class NewsBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id	@Column(name = "NEWSID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int NewsId;
+	private int newsId;
 	
 	@Column(name = "NEWSTYPE")
-	private String NewsType;
+	private String newsType;
 	
 	@Column(name = "NEWSTITLE")
-	private String NewsTitle;
+	private String newsTitle;
 	
 	@Column(name = "NEWSSUBTITLE")
-	private String NewsSubtitle;
+	private String newsSubtitle;
 	
 	@Column(name = "NEWSDATE")
-	private Timestamp NewsDate;
+	private Timestamp newsDate;
 	
 	@Column(name = "NEWSCONTENT")
-	private String NewsContent;
+	private String newsContent;
 	
-	@Column(name = "NEWSIMAGEPATH")
-	private String NewsImagePath;
+	@Column(name = "NEWSPICNAME")
+	private String newsPicName;
+	
+	@Column(name = "NEWSPICBASE64")
+	private String newsPicBase64;
 	
 	@Column(name = "NEWSNOTE")
-	private String NewsNote;
+	private String newsNote;
 
 	
 	public NewsBean() {
@@ -47,121 +52,130 @@ public class NewsBean implements Serializable{
 
 	//新增用
 	public NewsBean(String newsType, String newsTitle, String newsSubtitle, Timestamp newsDate,
-			String newsContent,  String newsNote) {		
-		this.NewsType = newsType;
-		this.NewsTitle = newsTitle;
-		this.NewsSubtitle = newsSubtitle;
-		this.NewsDate = newsDate;
-		this.NewsContent = newsContent;
-//		this.NewsImagePath = newsImagePath;
-		this.NewsNote = newsNote;
+			String newsContent, String newsPicName, String newsPicBase64, String newsNote) {		
+		this.newsType = newsType;
+		this.newsTitle = newsTitle;
+		this.newsSubtitle = newsSubtitle;
+		this.newsDate = newsDate;
+		this.newsContent = newsContent;
+		this.newsPicName = newsPicName;
+		this.newsPicBase64 = newsPicBase64;
+		this.newsNote = newsNote;
 	}
 	//修改用
 	public NewsBean(int NewsId,String newsType, String newsTitle, String newsSubtitle, Timestamp newsDate,
-			String newsContent,  String newsNote) {
-		this.NewsId = NewsId;
-		this.NewsType = newsType;
-		this.NewsTitle = newsTitle;
-		this.NewsSubtitle = newsSubtitle;
-		this.NewsDate = newsDate;
-		this.NewsContent = newsContent;
-//		this.NewsImagePath = newsImagePath;
-		this.NewsNote = newsNote;
+			String newsContent, String newsPicName, String newsPicBase64, String newsNote) {
+		this.newsId = NewsId;
+		this.newsType = newsType;
+		this.newsTitle = newsTitle;
+		this.newsSubtitle = newsSubtitle;
+		this.newsDate = newsDate;
+		this.newsContent = newsContent;
+		this.newsPicName = newsPicName;
+		this.newsPicBase64 = newsPicBase64;
+		this.newsNote = newsNote;
 	}
 	
 	
 	public int getNewsId() {
-		return NewsId;
+		return newsId;
 	}
 
 
 
 	public void setNewsId(int newsId) {
-		this.NewsId = newsId;
+		this.newsId = newsId;
 	}
 
 
 
 	public String getNewsType() {
-		return NewsType;
+		return newsType;
 	}
 
 
 
 	public void setNewsType(String newsType) {
-		this.NewsType = newsType;
+		this.newsType = newsType;
 	}
 
 
 
 	public String getNewsTitle() {
-		return NewsTitle;
+		return newsTitle;
 	}
 
 
 
 	public void setNewsTitle(String newsTitle) {
-		this.NewsTitle = newsTitle;
+		this.newsTitle = newsTitle;
 	}
 
 
 
 	public String getNewsSubtitle() {
-		return NewsSubtitle;
+		return newsSubtitle;
 	}
 
 
 
 	public void setNewsSubtitle(String newsSubtitle) {
-		this.NewsSubtitle = newsSubtitle;
+		this.newsSubtitle = newsSubtitle;
 	}
 
 
 
 	public Timestamp getNewsDate() {
-		return NewsDate;
+		return newsDate;
 	}
 
 
 
 	public void setNewsDate(Timestamp newsDate) {
-		this.NewsDate = newsDate;
+		this.newsDate = newsDate;
 	}
 
 
 
 	public String getNewsContent() {
-		return NewsContent;
+		return newsContent;
 	}
 
 
 
 	public void setNewsContent(String newsContent) {
-		this.NewsContent = newsContent;
+		this.newsContent = newsContent;
 	}
 
+	
 
-
-	public String getNewsImagePath() {
-		return NewsImagePath;
+	public String getNewsPicName() {
+		return newsPicName;
 	}
 
-
-
-	public void setNewsImagePath(String newsImagePath) {
-		this.NewsImagePath = newsImagePath;
+	
+	public void setNewsPicName(String newsPicName) {
+		this.newsPicName = newsPicName;
 	}
 
+	
+	public String getNewsPicBase64() {
+		return newsPicBase64;
+	}
 
+	
+	public void setNewsPicBase64(String newsPicBase64) {
+		this.newsPicBase64 = newsPicBase64;
+	}
 
+	
 	public String getNewsNote() {
-		return NewsNote;
+		return newsNote;
 	}
-
 
 
 	public void setNewsNote(String newsNote) {
-		this.NewsNote = newsNote;
+		this.newsNote = newsNote;
 	}
 	
 	

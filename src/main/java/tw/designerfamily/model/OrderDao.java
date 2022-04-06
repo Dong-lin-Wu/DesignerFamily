@@ -65,10 +65,9 @@ public class OrderDao implements IDesignerOrderDao{
 	@Override
 	public List<Order> search(String key){
 		Session session = sessionFactory.getCurrentSession();
-		Query<Order> query = session.createQuery("from Order where orderKey like ?0 or orderowner like ?1 or ordername like ?2  Order By orderno DESC", Order.class);
+		Query<Order> query = session.createQuery("from Order where orderKey like ?0 or orderowner like ?1  Order By orderno DESC", Order.class);
 		query.setParameter(0, "%" + key + "%");
 		query.setParameter(1, "%" + key + "%");
-		query.setParameter(2, "%" + key + "%");
 		return query.list();
 		
 	}
@@ -86,6 +85,16 @@ public class OrderDao implements IDesignerOrderDao{
 		
 		return resultBean;
 	}
+
+	@Override
+	public List<Order> detail(int key) {
+		Session session = sessionFactory.getCurrentSession();
+		String hqlstr="from Order where orderNo = :key";
+		Query<Order> query = session.createQuery(hqlstr,Order.class);
+		query.setParameter("key", key);
+		return query.list();
+	}
+	
 	
 
 }

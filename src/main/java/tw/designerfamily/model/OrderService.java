@@ -2,10 +2,13 @@ package tw.designerfamily.model;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class OrderService implements IDesignerOrderService {
 	
 	@Autowired
@@ -48,7 +51,14 @@ public class OrderService implements IDesignerOrderService {
 	public Order updateorder(int orderNo, int orderQty, int orderPrice, String orderStatus) {
 		return oDao.updateorder(orderNo, orderQty, orderPrice, orderStatus);
 	}
+
+	@Override
+	public List<Order> detail(int key) {
+		
+		return oDao.detail(key);
+	}
 	
 	
+
 
 }

@@ -252,7 +252,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="" class="dropdown-toggle no-arrow">
+                            <a href="newsIndex" class="dropdown-toggle no-arrow">
                                 <span class="micon icon-copy fa fa-newspaper-o" aria-hidden="true"></span><span
                                     class="mtext">活動</span>
                             </a>

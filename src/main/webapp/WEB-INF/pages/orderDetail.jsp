@@ -15,6 +15,38 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <title>訂單管理</title>
+
+<!-- 從這裡(第一段) -->
+        <!-- Site favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
+
+        <!-- Mobile Specific Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet">
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
+        <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
+        <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-119386393-1');
+        </script>
+        <!-- 到這裡(第一段結束) -->
+        
 </head>
 <style>
 td,th,tr{
@@ -23,11 +55,9 @@ text-align:center;
 </style>
 <body>
 <%@ include file="header.jsp" %>
-        <div class="main-container">
+ <div class="main-container">
 <div class="pd-ltr-20">
-</div></div>
 <br>
-<div class="container">
 	<h2>訂單管理</h2>
 	<br>
 	<form action="buy" method="post" style="float:left">
@@ -49,7 +79,6 @@ text-align:center;
 		    <tr>
 		    	<th>NO.</th>
 		    	<th>訂單編號</th>
-		    	<th>商品名稱</th>
 		    	<th>數量</th>
 		    	<th>下單日期</th>
 		    	<th>訂單價格</th>
@@ -64,9 +93,8 @@ text-align:center;
 				<tr>
 					<td>${va.orderNo}</td>
 					<td>${va.orderKey}</td>
-					<td width="260px">${va.orderName}</td>
 					<td>${va.orderQty}</td>
-					<td>${va.orderDate.substring(0, 10)}</td>
+					<td>${va.orderDate.substring(0, 19)}</td>
 					<td>${va.orderPrice}</td>
 					<td>${va.orderOwner}</td>
 					<td>${va.orderStatus}</td>	
@@ -81,7 +109,11 @@ text-align:center;
 							<input type="hidden" name="orderNo" value="${va.orderNo}">
 							<button type="submit" class="btn btn-outline-success">修改</button>
 						</form>
-						
+						<form style="display:inline" action="showDetail" method="post">
+							<input type="hidden" name="detailNo" value="${va.orderNo}">
+							<button type="submit" class="btn btn-outline-success">詳細</button>
+						</form>
+
 						<!-- Button trigger modal -->
 						<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal${va.orderNo}">刪除</button>
 						
@@ -115,14 +147,25 @@ text-align:center;
 		</table>
 	</div>
 </div>
-<!-- 
+</div>
+
 <script>
-	var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-		  keyboard: false
-		})
-	myModal.show()
+$("#select").attr("action", "searchorder");
 </script>
- -->
+
+   <!-- 從這裡(第二段) -->
+        <!-- js -->
+        <script src="vendors/scripts/core.js"></script>
+        <script src="vendors/scripts/script.min.js"></script>
+        <script src="vendors/scripts/process.js"></script>
+        <script src="vendors/scripts/layout-settings.js"></script>
+        <script src="src/plugins/apexcharts/apexcharts.min.js"></script>
+        <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+        <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+        <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+        <script src="vendors/scripts/dashboard.js"></script>
+        <!-- 到這裡(第二段結束) -->
 
 </body>
 </html>
