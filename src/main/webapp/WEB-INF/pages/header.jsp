@@ -258,7 +258,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="" class="dropdown-toggle no-arrow">
+                            <a href="forum_backend.controller" class="dropdown-toggle no-arrow">
                                 <span class="micon icon-copy dw dw-chat-2" aria-hidden="true"></span><span
                                     class="mtext">討論區</span>
                             </a>

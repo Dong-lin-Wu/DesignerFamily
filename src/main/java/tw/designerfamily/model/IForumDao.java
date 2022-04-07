@@ -14,6 +14,6 @@ public interface IForumDao {
 	public ForumBean update(int forumid, String forumSubject, String forumDescription, String forumCreate_time,
 			String forumUptate_time, String forumAccount, String forumCategory);
 	 
-	 
+	public ForumBean update(ForumBean fBean) ;
 
 }

@@ -1,9 +1,6 @@
 package tw.designerfamily.model;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity @Table(name = "forum")
+@Component
 public class ForumBean {
 private static final long serialVersionUID = 1L;
 	

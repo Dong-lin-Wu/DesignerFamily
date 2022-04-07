@@ -2,7 +2,6 @@ package tw.designerfamily.model;
 
 import java.util.List;
 
-
 public interface IDesignerBeanDao<T> {
 	public void insert(T tBean);
 	public List<T> selectAll();

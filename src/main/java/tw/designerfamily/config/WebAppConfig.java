@@ -57,7 +57,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 //		
 //	}
 //	
-	//上傳檔案
+	//上傳檔案 若要將整個form送出，則需要此段
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver cmr = new CommonsMultipartResolver();

@@ -21,14 +21,14 @@ span {
 <div class='container'>
 <h2 style="margin-top:20px"></h2>
 	
-	 <form name="homepage" action="DiscussControllerServlet" method="post">
+	 <form name="homepage" action="forum_backend.controller" method="get">
          <input type="hidden" name="nextto" value="forum">         
          <input type="submit" class="btn btn-info" value="回討論區首頁">
       </form>
       
       <hr />
 	<h3 style="margin-top:20px">修改討論</h3>
-				<form action="DiscussControllerServlet" method="POST">
+				<form action="forum_backend_edit.controller" method="POST">
 				
 				<div class="mb-3">
 					  <label for="Dis_Category" class="form-label">類別</label>
