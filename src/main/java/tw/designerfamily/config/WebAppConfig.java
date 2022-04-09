@@ -49,14 +49,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 //		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/resources/css/");
 //		registry.addResourceHandler("/js/**").addResourceLocations("WEB-INF/resources/js");
 	}
-//
-//	@Override
-//	public void addViewControllers(ViewControllerRegistry registry) {
-//		registry.addRedirectViewController("/", "membersmain.controller");
-//		registry.addViewController("/resourcesAction").setViewName("staticResources");
-//		
-//	}
-//	
+
 	//上傳檔案 若要將整個form送出，則需要此段
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
