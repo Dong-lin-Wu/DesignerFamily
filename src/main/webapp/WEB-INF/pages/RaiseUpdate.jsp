@@ -32,9 +32,9 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 			    <input type="text" class="form-control" id="Raise_Title" name="Raise_Title" value="${raiseBean.raiseTitle}" required="required">
 			</div>
 			<div class="mb-3">
-			    <label for="Raise_Breif" class="form-label"><b>計畫簡述</b></label>
-			    <input type="text" class="form-control" id="Raise_Breif" name="Raise_Breif" aria-describedby="BreifInfo" value="${raiseBean.raiseBreif}" required="required">
-			    <div id="BreifInfo" class="form-text">請用簡短的兩三句話介紹這個計畫。</div>
+			    <label for="Raise_Brief" class="form-label"><b>計畫簡述</b></label>
+			    <input type="text" class="form-control" id="Raise_Brief" name="Raise_Brief" aria-describedby="BriefInfo" value="${raiseBean.raiseBrief}" required="required">
+			    <div id="BriefInfo" class="form-text">請用簡短的兩三句話介紹這個計畫。</div>
 			</div>
 			<div class="mb-3">
 			 	<label for="Raise_Category" class="form-label"><b>計畫類別</b></label>

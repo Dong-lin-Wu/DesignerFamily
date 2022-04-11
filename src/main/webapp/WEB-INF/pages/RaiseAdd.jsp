@@ -33,9 +33,9 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 	            <input type="text" class="form-control nBlank" id="Raise_Title" name="Raise_Title" required="required">
 	        </div>
 	        <div class="mb-3">
-	            <label for="Raise_Breif" class="form-label"><b>計畫簡述</b>&emsp;<span style="color:red"></span></label>
-	            <input type="text" class="form-control nBlank" id="Raise_Breif" name="Raise_Breif" aria-describedby="BreifInfo" required="required">
-	            <div id="BreifInfo" class="form-text">請用簡短的兩三句話介紹這個計畫。</div>
+	            <label for="Raise_Brief" class="form-label"><b>計畫簡述</b>&emsp;<span style="color:red"></span></label>
+	            <input type="text" class="form-control nBlank" id="Raise_Brief" name="Raise_Brief" aria-describedby="BriefInfo" required="required">
+	            <div id="BriefInfo" class="form-text">請用簡短的兩三句話介紹這個計畫。</div>
 	        </div>
 	        <div class="mb-3">
 	            <label for="Raise_Category" class="form-label"><b>計畫類別</b></label>
@@ -195,7 +195,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 			let rNum=Math.ceil(Math.random()*500);
 			//$("#Raise_Title").prop("value",`計畫名稱\${rNum}`);
 			$("#Raise_Title").attr("value",`計畫名稱\${rNum}`);
-			$("#Raise_Breif").attr("value",`計畫簡述\${rNum}`);
+			$("#Raise_Brief").attr("value",`計畫簡述\${rNum}`);
 			$("#Raise_Category option").removeAttr("selected");//若重複點選一鑑輸入，會導致超過一個被選取，因此先清空所有的selected
 			$("#Raise_Category option").eq(Math.ceil(Math.random()*8)).attr("selected","selected");
 			$("#Raise_Target").attr("value",Math.ceil(Math.random()*200000));

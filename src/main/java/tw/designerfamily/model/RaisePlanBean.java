@@ -15,6 +15,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity @Table(name = "raiseplan")
 @Component
 public class RaisePlanBean implements Serializable {
@@ -41,6 +44,7 @@ public class RaisePlanBean implements Serializable {
 	@Column(name = "RAISEPLANDESCRIBE")
 	private String raisePlanDescribe;
 	
+	@JsonIgnoreProperties(value = "raisePlanBeanSet")
 	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinColumn(name = "RAISENO")
 	private RaiseBean raiseBean;

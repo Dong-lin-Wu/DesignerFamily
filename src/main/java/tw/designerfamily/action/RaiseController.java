@@ -13,11 +13,15 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.google.gson.JsonObject;
 
 import tw.designerfamily.model.IDesignerBeanDao;
 import tw.designerfamily.model.IRaiseBeanService;
@@ -97,7 +101,7 @@ public class RaiseController {
 
 	// 於新增頁面按下送出並導回首頁
 	@RequestMapping(path = "/raiseinsert.controller", method = RequestMethod.POST)
-	public String processInsert(@RequestParam("Raise_Title") String pTitle, @RequestParam("Raise_Breif") String pBreif,
+	public String processInsert(@RequestParam("Raise_Title") String pTitle, @RequestParam("Raise_Brief") String pBrief,
 			@RequestParam("Raise_Category") String pCategory, @RequestParam("Raise_PicName") String pPicName,
 			@RequestParam("Raise_PicBase64") String pPicBase64, @RequestParam("Raise_Target") int pTarget,
 			@RequestParam("Raise_SDate") String pSDate, @RequestParam("Raise_ExpDate") String pExpDate,
@@ -119,7 +123,7 @@ public class RaiseController {
 			pName = "Donglin";
 		}
 
-		RaiseBean rBean = new RaiseBean(pName, pTitle, pBreif, pCategory, pPicName, pPicBase64, pTarget, pSDate,
+		RaiseBean rBean = new RaiseBean(pName, pTitle, pBrief, pCategory, pPicName, pPicBase64, pTarget, pSDate,
 				pExpDate, pDescribe);
 		RaisePlanBean rPBean1 = new RaisePlanBean(pPicName1, pPicBase64_1, pAmount1, pADate1, pDescribe1);
 		rPBean1.setRaiseBean(rBean);
@@ -140,7 +144,7 @@ public class RaiseController {
 	// 於修改頁面按下送出並導回首頁
 	@RequestMapping(path = "/raiseupdate.controller", method = RequestMethod.POST)
 	public String processUpdate(@RequestParam("rID") int pId, @RequestParam("Raise_Title") String pTitle,
-			@RequestParam("Raise_Breif") String pBreif, @RequestParam("Raise_Category") String pCategory,
+			@RequestParam("Raise_Brief") String pBrief, @RequestParam("Raise_Category") String pCategory,
 			@RequestParam("Raise_PicName_default") String pPicName, @RequestParam("Raise_PicBase64") String pPicBase64,
 			@RequestParam("Raise_Target") int pTarget, @RequestParam("Raise_SDate") String pSDate,
 			@RequestParam("Raise_ExpDate") String pExpDate, @RequestParam("Raise_Describe") String pDescribe,
@@ -165,7 +169,7 @@ public class RaiseController {
 		RaiseBean oBean = rService.selectById(pId);
 		String pStatus = oBean.getRaiseStatus();
 
-		RaiseBean rBean = new RaiseBean(pId, pName, pTitle, pBreif, pCategory, pPicName, pPicBase64, pTarget, pSDate,
+		RaiseBean rBean = new RaiseBean(pId, pName, pTitle, pBrief, pCategory, pPicName, pPicBase64, pTarget, pSDate,
 				pExpDate, pDescribe, pStatus);
 
 		RaisePlanBean rPBean1 = new RaisePlanBean(pId1, pPicName1, pPicBase64_1, pAmount1, pADate1, pDescribe1);
@@ -198,4 +202,17 @@ public class RaiseController {
 	    model.addAttribute("raiseList", rlist);
 	    return "redirect: raiseindex";
 	}
+	
+	//------------------------------------------------------------------------------------------------------------------------
+	//使用者端:
+	
+	//查詢全部
+	@GetMapping("/raise")
+	@ResponseBody
+	public List<RaiseBean> processSelectAll0() {
+		List<RaiseBean> rlist = rService.selectAll();
+		return rlist;
+		
+	}
+	
 }

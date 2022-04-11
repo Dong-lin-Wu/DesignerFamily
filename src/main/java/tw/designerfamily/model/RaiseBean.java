@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity @Table(name = "raise") @DynamicInsert
 @Component
 public class RaiseBean implements Serializable{
@@ -33,8 +35,8 @@ public class RaiseBean implements Serializable{
 	@Column(name = "RAISETITLE")
 	private String raiseTitle;
 	
-	@Column(name = "RAISEBREIF")
-	private String raiseBreif;
+	@Column(name = "RAISEBRIEF")
+	private String raiseBrief;
 	
 	@Column(name = "RAISECATEGORY")
 	private String raiseCategory;
@@ -59,18 +61,18 @@ public class RaiseBean implements Serializable{
 	
 	@Column(name = "RAISESTATUS",columnDefinition = "varchar(20) default 'Pending'")
 	private String raiseStatus;
-
+	
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "raiseBean")
 	private Set<RaisePlanBean> raisePlanBeanSet =new LinkedHashSet<RaisePlanBean>(0);
 	
 	public RaiseBean() {		
 	}
 	//新增資料使用
-	public RaiseBean(String raiseName, String raiseTitle, String raiseBreif, String raiseCategory, String raisePicName,String raisePicBase64,
+	public RaiseBean(String raiseName, String raiseTitle, String raiseBrief, String raiseCategory, String raisePicName,String raisePicBase64,
 			int raiseTarget, String raiseSDate, String raiseExpDate, String raiseDescribe) {
 		this.raiseName = raiseName;
 		this.raiseTitle = raiseTitle;
-		this.raiseBreif = raiseBreif;
+		this.raiseBrief = raiseBrief;
 		this.raiseCategory = raiseCategory;
 		this.raisePicName = raisePicName;
 		this.raisePicBase64 = raisePicBase64;
@@ -80,12 +82,12 @@ public class RaiseBean implements Serializable{
 		this.raiseDescribe = raiseDescribe;
 	}
 	//修改資料使用
-	public RaiseBean(int raiseNo, String raiseName, String raiseTitle, String raiseBreif, String raiseCategory, String raisePicName,
+	public RaiseBean(int raiseNo, String raiseName, String raiseTitle, String raiseBrief, String raiseCategory, String raisePicName,
 			String raisePicBase64, int raiseTarget, String raiseSDate, String raiseExpDate, String raiseDescribe, String raiseStatus) {
 		this.raiseNo = raiseNo;
 		this.raiseName = raiseName;
 		this.raiseTitle = raiseTitle;
-		this.raiseBreif = raiseBreif;
+		this.raiseBrief = raiseBrief;
 		this.raiseCategory = raiseCategory;
 		this.raisePicName = raisePicName;
 		this.raisePicBase64 = raisePicBase64;
@@ -121,12 +123,12 @@ public class RaiseBean implements Serializable{
 		this.raiseTitle = raiseTitle;
 	}
 
-	public String getRaiseBreif() {
-		return raiseBreif;
+	public String getRaiseBrief() {
+		return raiseBrief;
 	}
 
-	public void setRaiseBreif(String raiseBreif) {
-		this.raiseBreif = raiseBreif;
+	public void setRaiseBreif(String raiseBrief) {
+		this.raiseBrief = raiseBrief;
 	}
 
 	public String getRaiseCategory() {
